@@ -1,0 +1,192 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+:root {
+  --navy: #0a1628;
+  --royal-blue: #1b3a6b;
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --white: #fafaf8;
+  --font-display: "Playfair Display", serif;
+  --font-body: "Lato", "Nunito Sans", system-ui, sans-serif;
+  --font-arabic: "Amiri", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--navy);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-arabic { font-family: var(--font-arabic); }
+
+/* Parallax */
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media (max-width: 1024px), (hover: none) {
+  .parallax { background-attachment: scroll; }
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounceY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(12px); }
+}
+@keyframes shimmer {
+  0% { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(220%) skewX(-20deg); }
+}
+@keyframes drawLine {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  50%      { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bounce-arrow { animation: bounceY 2s ease-in-out infinite; }
+
+.gold-divider {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold);
+}
+.gold-divider::before,
+.gold-divider::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform-origin: center;
+  animation: drawLine 1.2s ease-out forwards;
+}
+
+/* Shimmer button */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 16px 36px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -8px rgba(201, 168, 76, 0.6);
+}
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: translateX(-120%) skewX(-20deg);
+}
+.btn-gold:hover::after { animation: shimmer 0.9s ease-out; }
+
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 12px 24px;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-outline-gold:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* Package card */
+.pkg-card {
+  background: var(--navy);
+  color: var(--white);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  overflow: hidden;
+}
+.pkg-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px -20px rgba(10, 22, 40, 0.5);
+  border-color: var(--gold);
+}
+
+.feature-box {
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  transition: all 0.4s ease;
+  background: linear-gradient(180deg, rgba(27,58,107,0.4) 0%, rgba(10,22,40,0.4) 100%);
+}
+.feature-box:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 40px -10px rgba(201, 168, 76, 0.5);
+  transform: translateY(-6px);
+}
+
+/* Islamic pattern bg */
+.islamic-pattern {
+  background-color: var(--white);
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(201, 168, 76, 0.06) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(27, 58, 107, 0.05) 2px, transparent 2px);
+  background-size: 60px 60px;
+}
+
+.wa-btn {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  animation: pulseGlow 2.4s ease-in-out infinite;
+}
+.ig-btn {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+.ig-btn::after, .wa-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: translateX(-120%) skewX(-20deg);
+}
+.ig-btn:hover::after, .wa-btn:hover::after { animation: shimmer 1s ease-out; }
