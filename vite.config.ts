@@ -31,6 +31,9 @@ export default defineConfig(({ command }) => {
       tanstackStart({
         spa: {
           enabled: true,
+          prerender: {
+            outputPath: "index.html",
+          },
         },
         importProtection: {
           behavior: "error",
